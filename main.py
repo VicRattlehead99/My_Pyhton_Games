@@ -1,6 +1,8 @@
 import time
 from turtle import Screen
+
 from food import Food
+from scoreboard import Scoreboard
 from snake import Snake
 
 # Creating screen
@@ -12,6 +14,7 @@ screen.tracer(0)  # Hiding the creation of snake by stopping animations
 
 snake = Snake()
 food = Food()
+scoreboard = Scoreboard()
 
 screen.listen()
 screen.onkeypress(snake.move_up, "Up")
@@ -42,6 +45,7 @@ while game_is_on:
                     food_in_body = True
                     break  # Breaking the for loop and creating food in another location
 
+        scoreboard.increase_score()  # Increasing the score
         snake.extend()  # Increasing the snake size
 
     # Detecting collision with wall
@@ -53,6 +57,12 @@ while game_is_on:
         snake.segments[0].goto(x=snake.segments[0].xcor(), y=-300)
     elif snake.segments[0].ycor() <= -320:
         snake.segments[0].goto(x=snake.segments[0].xcor(), y=300)
+
+    # Detecting tail bite
+    for segment in snake.segments[1:]:  # To prevent checking head distance to head
+        if snake.segments[0].distance(segment) < 1:
+            game_is_on = False
+            scoreboard.game_over()
 
 # Exiting when clicked
 screen.exitonclick()
