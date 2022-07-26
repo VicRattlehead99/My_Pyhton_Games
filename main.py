@@ -44,5 +44,15 @@ while game_is_on:
 
         snake.extend()  # Increasing the snake size
 
+    # Detecting collision with wall
+    if snake.segments[0].xcor() >= 320:
+        snake.segments[0].goto(x=-300, y=snake.segments[0].ycor())
+    elif snake.segments[0].xcor() <= -320:
+        snake.segments[0].goto(x=300, y=snake.segments[0].ycor())
+    elif snake.segments[0].ycor() >= 320:
+        snake.segments[0].goto(x=snake.segments[0].xcor(), y=-300)
+    elif snake.segments[0].ycor() <= -320:
+        snake.segments[0].goto(x=snake.segments[0].xcor(), y=300)
+
 # Exiting when clicked
 screen.exitonclick()
