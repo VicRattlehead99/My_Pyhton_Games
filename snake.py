@@ -7,6 +7,12 @@ STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0), (-60, 0), (-80, 0), (-100, 0),
 # Distance set as constant to tweak the game if wanted in the future
 MOVE_DISTANCE = 20
 
+# Appointing angles
+UP = 90
+RIGHT = 0
+DOWN = 270
+LEFT = 180
+
 
 class Snake:
     # self.segments[0] represents head of the snake
@@ -35,3 +41,19 @@ class Snake:
         for seg_num in range(len(self.segments) - 1, 0, -1):  # Starting from end one by one
             self.segments[seg_num].goto(x=self.segments[seg_num - 1].xcor(), y=self.segments[seg_num - 1].ycor())
         self.segments[0].forward(MOVE_DISTANCE)
+
+    def move_up(self):
+        if self.segments[0].heading() != DOWN:  # To prevent going backwards
+            self.segments[0].setheading(UP)
+
+    def move_right(self):
+        if self.segments[0].heading() != LEFT:  # To prevent going backwards
+            self.segments[0].setheading(RIGHT)
+
+    def move_down(self):
+        if self.segments[0].heading() != UP:  # To prevent going backwards
+            self.segments[0].setheading(DOWN)
+
+    def move_left(self):
+        if self.segments[0].heading() != RIGHT:  # To prevent going backwards
+            self.segments[0].setheading(LEFT)

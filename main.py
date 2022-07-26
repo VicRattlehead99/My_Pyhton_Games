@@ -10,6 +10,14 @@ screen.bgcolor("black")
 screen.tracer(0)  # Hiding the creation of snake by stopping animations
 
 snake = Snake()
+
+screen.listen()
+screen.onkeypress(snake.move_up, "Up")
+screen.onkeypress(snake.move_down, "Down")
+screen.onkeypress(snake.move_left, "Left")
+screen.onkeypress(snake.move_right, "Right")
+screen.onkeypress(screen.bye, "space")
+
 game_is_on = True
 
 while game_is_on:
