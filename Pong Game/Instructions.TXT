@@ -1,0 +1,5 @@
+Left paddle is controlled by 'W' and 'S'
+whereas right paddle controlled by up and down arrow keys.
+Ball gets faster.
+It's for fun.
+Don't break your keyboard.
